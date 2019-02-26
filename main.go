@@ -16,18 +16,18 @@ func main() {
 	}
 	var sumOfAllAreas int
 	for _, line := range strings.Split(string(data), "\n") {
-		v := strings.Split(line, "x")
-
-		if len(v) == 1 {
+		if len(line) == 0 {
 			break
 		}
+		vString := strings.Split(line, "x")
 
-		i := []int{toInt(v[0]), toInt(v[1]), toInt(v[2])}
+		d := []int{toInt(vString[0]), toInt(vString[1]), toInt(vString[2])}
 
-		minValue := min(i[0]*i[1], i[1]*i[2], i[0]*i[2])
-		area := i[0]*i[1]*2 + i[1]*i[2]*2 + i[0]*i[2]*2
-		sumOfAllAreas += area + minValue
-		fmt.Printf("%v -> %d + %d = %d\n", v, area, minValue, (area + minValue))
+		area := d[0]*d[1]*2 + d[1]*d[2]*2 + d[0]*d[2]*2
+		smallestSideArea := min(d[0]*d[1], d[1]*d[2], d[0]*d[2])
+		fmt.Printf("%v -> %d + %d = %d\n", d, area, smallestSideArea, (area + smallestSideArea))
+
+		sumOfAllAreas += area + smallestSideArea
 	}
 
 	fmt.Printf("You need %d dm^2 of paper\n", sumOfAllAreas)
